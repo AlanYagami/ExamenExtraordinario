@@ -1,0 +1,32 @@
+{
+  "name": "ExamenExtraordinario",
+  "short_name": "Extraordinario",
+  "description": "Aplicación web progresiva como entregable del Examen Extraordinario.",
+  "start_url": "/ExamenExtraordinario/",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2c3e50",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "./512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

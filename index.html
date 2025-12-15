@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PWA Geolocalización</title>
+
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        margin: 1.5rem;
+        max-width: 600px;
+      }
+      button {
+        padding: 0.7rem 1.2rem;
+        border-radius: 0.5rem;
+        border: none;
+        cursor: pointer;
+        margin-right: 0.5rem;
+      }
+      #btn-ubicacion {
+        background: #2563eb;
+        color: white;
+      }
+      #btn-detener {
+        background: #ef4444;
+        color: white;
+      }
+      .card {
+        border-radius: 0.75rem;
+        padding: 1rem;
+        background: #f9fafb;
+        margin-top: 1rem;
+        border: 1px solid #e5e7eb;
+      }
+      .label {
+        font-weight: 600;
+      }
+      code {
+        background: #f3f4f6;
+        padding: 0.1rem 0.3rem;
+        border-radius: 0.25rem;
+      }
+
+      /* Estilos para el modal de foto */
+      #photoModal {
+        position: block;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #photoModal > div {
+        background: white;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        text-align: center;
+      }
+      #capturedPhoto {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>PWA con Geolocalización</h1>
+
+    <div class="container">
+      <h1>Cámara PWA</h1>
+
+      <!-- Botón para abrir la cámara -->
+      <button id="openCamera">Abrir Cámara</button>
+
+      <!-- Contenedor de la cámara (inicialmente oculto) -->
+      <div id="cameraContainer">
+        <!-- Elemento de video para el streaming de la cámara -->
+        <video id="video" autoplay playsinline></video>
+
+        <!-- Botón para capturar la foto -->
+        <button id="takePhoto">Tomar Foto</button>
+      </div>
+
+      <!-- Canvas para procesar la imagen capturada -->
+    </div>
+
+    <!-- Modal para poner la foto y ubicacion-->
+    <div id="photoModal" style="display: none">
+      <div>
+        <h2>Foto Capturada</h2>
+        <canvas hidden id="canvas" width="320" height="240"></canvas>
+
+        <img id="capturedPhoto" alt="Foto Capturada" />
+        <div class="card">
+          <button hidden id="btn-ubicacion">Obtener / Ver ubicación</button>
+          <button hidden id="btn-detener" disabled>Detener seguimiento</button>
+          <button hidden id="btn-foto"></button>
+
+          <p>
+            <span class="label">Estado de permisos:</span>
+            <span id="permiso">desconocido</span>
+          </p>
+
+          <p><span class="label">Latitud:</span> <span id="lat">-</span></p>
+          <p><span class="label">Longitud:</span> <span id="lng">-</span></p>
+          <p>
+            <span class="label">Precisión (m):</span> <span id="acc">-</span>
+          </p>
+
+          <p>
+            <span class="label">Última actualización:</span>
+            <span id="timestamp">-</span>
+          </p>
+
+          <p>
+            <a
+              id="link-maps"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="display: none"
+            >
+              Ver en mapa
+            </a>
+          </p>
+
+          <p id="mensaje" style="color: #6b7280"></p>
+        </div>
+        <button onclick="openModal()" id="closeModal">Cerrar</button>
+      </div>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
